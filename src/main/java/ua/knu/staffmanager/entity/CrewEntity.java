@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "crew")
-public class Crew {
+public class CrewEntity {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -19,13 +19,13 @@ public class Crew {
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "captain_id", nullable = false)
-    private Staff captain;
+    private StaffEntity captain;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "second_pilot_id", nullable = false)
-    private Staff secondPilot;
+    private StaffEntity secondPilot;
 
     @OneToMany(cascade = CascadeType.DETACH)
     @JoinColumn(name = "crew_members", nullable = false)
-    private List<Staff> crewMembers;
+    private List<StaffEntity> crewMembers;
 }

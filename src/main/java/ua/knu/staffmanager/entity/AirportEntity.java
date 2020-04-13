@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "airport")
-public class Airport {
+public class AirportEntity {
 
     @Id
     @Column(name = "id", nullable = false)

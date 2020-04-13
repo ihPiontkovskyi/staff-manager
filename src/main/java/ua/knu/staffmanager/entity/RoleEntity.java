@@ -1,6 +1,6 @@
 package ua.knu.staffmanager.entity;
 
-public enum Role {
+public enum RoleEntity {
     ADMINISTRATOR,
     DOCTOR,
     INSTRUCTOR,

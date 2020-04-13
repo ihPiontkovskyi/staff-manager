@@ -1,7 +1,6 @@
 package ua.knu.staffmanager.entity;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "flight")
-public class Flight {
+public class FlightEntity {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -19,20 +18,20 @@ public class Flight {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status;
+    private StatusEntity status;
 
     @Column(name = "extra_time", nullable = false)
     private Integer extraTime;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "crew_id", nullable = false)
-    private Crew crew;
+    private CrewEntity crewEntity;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "destination_airport_id", nullable = false)
-    private Airport destination;
+    private AirportEntity destination;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "arrival_airport_id", nullable = false)
-    private Airport arrival;
+    private AirportEntity arrival;
 }

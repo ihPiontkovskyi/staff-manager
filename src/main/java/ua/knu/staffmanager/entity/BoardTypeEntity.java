@@ -1,4 +1,4 @@
 package ua.knu.staffmanager.entity;
 
-public enum Status {
+public enum BoardTypeEntity {
 }

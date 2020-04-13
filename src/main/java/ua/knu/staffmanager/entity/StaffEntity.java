@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "staff")
-public class Staff {
+public class StaffEntity {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -27,9 +27,13 @@ public class Staff {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private Role role;
+    private RoleEntity roleEntity;
 
     @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "airport_id", nullable = false)
-    private Airport location;
+    @JoinColumn(name = "airport_id")
+    private AirportEntity location;
+
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "additional_info_id")
+    private AdditionalInfoEntity additionalInfo;
 }
