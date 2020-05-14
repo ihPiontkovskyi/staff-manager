@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import ua.knu.staffmanager.domain.Role;
+import ua.knu.staffmanager.entity.Role;
 import ua.knu.staffmanager.service.StaffService;
 
 @Configuration
@@ -27,7 +27,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin-home").hasAuthority(Role.ADMINISTRATOR.name())
                 .antMatchers("/doctor-home").hasAuthority(Role.DOCTOR.name())
                 .antMatchers("/instructor-home").hasAuthority(Role.INSTRUCTOR.name())
-                .antMatchers("/crew-member-home").hasAuthority(Role.CREW_MEMBER.name())
 
                 .and()
                 .formLogin()

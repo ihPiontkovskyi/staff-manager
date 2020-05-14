@@ -16,11 +16,6 @@ public class HomePageController {
         return "instructor-home";
     }
 
-    @GetMapping(value = {"/crew-member-home"})
-    public String crewPage(Model model) {
-        return "crew-member-home";
-    }
-
     @GetMapping(value = {"/doctor-home"})
     public String doctorPage(Model model) {
         return "doctor-home";

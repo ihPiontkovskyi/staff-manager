@@ -1,20 +1,24 @@
 package ua.knu.staffmanager.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Getter
-@Builder
+@Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "staff")
-public class StaffEntity {
-
+@Table(name = "crew_members")
+public class CrewMember {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,18 +27,10 @@ public class StaffEntity {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "identifier", nullable = false, unique = true)
-    private String identifier;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private RoleEntity roleEntity;
+    private String role;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "airport_id")
-    private AirportEntity location;
-
+    private Airport location;
 }
