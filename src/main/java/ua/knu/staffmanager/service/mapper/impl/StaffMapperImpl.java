@@ -1,4 +1,4 @@
-package ua.knu.staffmanager.mapper.impl;
+package ua.knu.staffmanager.service.mapper.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,8 @@ import ua.knu.staffmanager.domain.Role;
 import ua.knu.staffmanager.domain.Staff;
 import ua.knu.staffmanager.entity.RoleEntity;
 import ua.knu.staffmanager.entity.StaffEntity;
-import ua.knu.staffmanager.mapper.AirportMapper;
-import ua.knu.staffmanager.mapper.StaffMapper;
+import ua.knu.staffmanager.service.mapper.AirportMapper;
+import ua.knu.staffmanager.service.mapper.StaffMapper;
 
 import static java.util.Objects.isNull;
 

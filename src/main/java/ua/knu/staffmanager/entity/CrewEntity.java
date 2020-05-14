@@ -1,7 +1,9 @@
 package ua.knu.staffmanager.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 @Getter
 @Builder
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "crew")
 public class CrewEntity {
 
@@ -26,6 +30,6 @@ public class CrewEntity {
     private StaffEntity secondPilot;
 
     @OneToMany(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "crew_members", nullable = false)
+    @JoinColumn(name = "crew_members")
     private List<StaffEntity> crewMembers;
 }

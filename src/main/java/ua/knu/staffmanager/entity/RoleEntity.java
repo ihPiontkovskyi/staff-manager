@@ -4,6 +4,5 @@ public enum RoleEntity {
     ADMINISTRATOR,
     DOCTOR,
     INSTRUCTOR,
-    PILOT,
     CREW_MEMBER
 }

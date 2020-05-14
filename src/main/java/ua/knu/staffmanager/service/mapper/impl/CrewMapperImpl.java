@@ -1,12 +1,12 @@
-package ua.knu.staffmanager.mapper.impl;
+package ua.knu.staffmanager.service.mapper.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.knu.staffmanager.domain.Crew;
 import ua.knu.staffmanager.entity.CrewEntity;
-import ua.knu.staffmanager.mapper.CrewMapper;
-import ua.knu.staffmanager.mapper.StaffMapper;
+import ua.knu.staffmanager.service.mapper.CrewMapper;
+import ua.knu.staffmanager.service.mapper.StaffMapper;
 
 import java.util.stream.Collectors;
 

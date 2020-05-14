@@ -1,9 +1,9 @@
-package ua.knu.staffmanager.mapper.impl;
+package ua.knu.staffmanager.service.mapper.impl;
 
 import org.springframework.stereotype.Component;
 import ua.knu.staffmanager.domain.Airport;
 import ua.knu.staffmanager.entity.AirportEntity;
-import ua.knu.staffmanager.mapper.AirportMapper;
+import ua.knu.staffmanager.service.mapper.AirportMapper;
 
 import static java.util.Objects.isNull;
 

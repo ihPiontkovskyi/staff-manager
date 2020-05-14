@@ -4,6 +4,5 @@ public enum Role {
     ADMINISTRATOR,
     DOCTOR,
     INSTRUCTOR,
-    PILOT,
     CREW_MEMBER
 }
