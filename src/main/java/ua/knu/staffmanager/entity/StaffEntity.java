@@ -33,7 +33,4 @@ public class StaffEntity {
     @JoinColumn(name = "airport_id")
     private AirportEntity location;
 
-    @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "additional_info_id")
-    private AdditionalInfoEntity additionalInfo;
 }

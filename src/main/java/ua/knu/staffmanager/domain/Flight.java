@@ -3,7 +3,6 @@ package ua.knu.staffmanager.domain;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
