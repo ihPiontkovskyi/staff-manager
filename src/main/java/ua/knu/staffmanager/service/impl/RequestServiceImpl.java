@@ -9,6 +9,7 @@ import ua.knu.staffmanager.entity.RequestStatus;
 import ua.knu.staffmanager.entity.Staff;
 import ua.knu.staffmanager.repository.RequestRepository;
 import ua.knu.staffmanager.repository.StaffRepository;
+import ua.knu.staffmanager.service.RequestService;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,10 +17,11 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class RequestServiceImpl {
+public class RequestServiceImpl implements RequestService {
     private final RequestRepository repository;
     private final StaffRepository staffRepository;
 
+    @Override
     public List<Request> findAllPastRequests() {
         final Staff current = getCurrentStaff();
         switch (current.getRole()) {
@@ -39,6 +41,7 @@ public class RequestServiceImpl {
         }
     }
 
+    @Override
     public List<Request> findAllActiveRequests() {
         final Staff current = getCurrentStaff();
         switch (current.getRole()) {
