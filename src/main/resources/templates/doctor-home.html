@@ -1,15 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
 <!--TODO accept or deny request functionality -->
-
 <!--TODO active request list -->
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Assigned doctor</th>
+            <th>Examined by doctor status</th>
+            <th>Assigned instructor</th>
+            <th>Examined by instructor status</th>
+            <th>Crew</th>
+            <th>Flight</th>
+            <th>Rejected cause</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="req:${activeRequests}">
+            <td th:text="${req.getId()}"></td>
+            <td th:text="${req.getAssignedDoctor()}"></td>
+            <td th:text="${req.getExaminedByDoctor()}"></td>
+            <td th:text="${req.getAssignedInstructor()}"></td>
+            <td th:text="${req.getExaminedByInstructor()}"></td>
+            <td th:text="${req.getCrew()}"></td>
+            <td th:text="${req.getFlight()}"></td>
+            <td th:text="${req.getRejectedCause()}"></td>
+            <td>
+                <button>Accept</button>
+                <button>Deny</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <!--TODO past request list -->
-
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Assigned doctor</th>
+            <th>Examined by doctor status</th>
+            <th>Assigned instructor</th>
+            <th>Examined by instructor status</th>
+            <th>Crew</th>
+            <th>Flight</th>
+            <th>Rejected cause</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="req:${pastRequests}">
+            <td th:text="${req.getId()}"></td>
+            <td th:text="${req.getAssignedDoctor()}"></td>
+            <td th:text="${req.getExaminedByDoctor()}"></td>
+            <td th:text="${req.getAssignedInstructor()}"></td>
+            <td th:text="${req.getExaminedByInstructor()}"></td>
+            <td th:text="${req.getCrew()}"></td>
+            <td th:text="${req.getFlight()}"></td>
+            <td th:text="${req.getRejectedCause()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
