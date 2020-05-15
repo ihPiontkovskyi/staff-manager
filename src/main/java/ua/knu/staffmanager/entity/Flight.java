@@ -1,6 +1,5 @@
 package ua.knu.staffmanager.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,4 +30,9 @@ public class Flight {
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "to_id")
     private Airport to;
+
+    @Override
+    public String toString() {
+        return id + ": " + from + " - " + to;
+    }
 }

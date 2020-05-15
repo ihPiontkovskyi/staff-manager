@@ -5,7 +5,7 @@ import ua.knu.staffmanager.entity.Request;
 import java.util.List;
 
 public interface RequestService {
-    List<Request> findAllPastRequests();
+    List<Request> findAllPastDoctorsRequests();
 
-    List<Request> findAllActiveRequests();
+    List<Request> findAllActiveDoctorsRequests();
 }

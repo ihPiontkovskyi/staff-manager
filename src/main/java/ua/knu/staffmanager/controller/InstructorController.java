@@ -12,10 +12,10 @@ import ua.knu.staffmanager.service.RequestService;
 public class InstructorController {
     private final RequestService service;
 
-    @GetMapping(value = {"/instrutor-home"})
+    @GetMapping(value = {"/instructor-home"})
     public String doctorPage(Model model) {
-        model.addAttribute("pastRequests", service.findAllPastRequests());
-        model.addAttribute("activeRequests", service.findAllActiveRequests());
+        model.addAttribute("pastRequests", service.findAllPastDoctorsRequests());
+        model.addAttribute("activeRequests", service.findAllActiveDoctorsRequests());
         return "instructor-home";
     }
 }

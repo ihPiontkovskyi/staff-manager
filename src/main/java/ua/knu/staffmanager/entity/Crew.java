@@ -1,9 +1,6 @@
 package ua.knu.staffmanager.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
@@ -40,4 +37,10 @@ public class Crew {
     @OneToMany(cascade = CascadeType.DETACH)
     @JoinColumn(name = "crew_members")
     private List<CrewMember> crewMembers;
+
+    @Override
+    public String toString() {
+        return "Crew id - " + id + ",Captain - " + captain +
+                ",Second pilot - " + secondPilot;
+    }
 }

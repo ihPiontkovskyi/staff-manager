@@ -1,6 +1,5 @@
 package ua.knu.staffmanager.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,4 +32,9 @@ public class CrewMember {
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "airport_id")
     private Airport location;
+
+    @Override
+    public String toString() {
+        return role + ": " + fullName;
+    }
 }

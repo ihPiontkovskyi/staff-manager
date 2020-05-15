@@ -15,8 +15,10 @@ public class DoctorController {
 
     @GetMapping(value = {"/doctor-home"})
     public String doctorPage(Model model) {
-        model.addAttribute("pastRequests", service.findAllPastRequests());
-        model.addAttribute("activeRequests", service.findAllActiveRequests());
+        model.addAttribute("pastRequests", service.findAllPastDoctorsRequests());
+        model.addAttribute("activeRequests", service.findAllActiveDoctorsRequests());
         return "doctor-home";
     }
+
+
 }

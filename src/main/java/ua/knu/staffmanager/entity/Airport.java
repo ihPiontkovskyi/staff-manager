@@ -1,6 +1,5 @@
 package ua.knu.staffmanager.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,4 +26,9 @@ public class Airport {
 
     @Column(name = "city", nullable = false)
     private String city;
+
+    @Override
+    public String toString() {
+        return city + "(" + iata + ")";
+    }
 }

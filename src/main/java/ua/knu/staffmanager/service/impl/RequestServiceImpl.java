@@ -13,6 +13,7 @@ import ua.knu.staffmanager.service.RequestService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,39 +23,30 @@ public class RequestServiceImpl implements RequestService {
     private final StaffRepository staffRepository;
 
     @Override
-    public List<Request> findAllPastRequests() {
-        final Staff current = getCurrentStaff();
-        switch (current.getRole()) {
-            case DOCTOR:
-                return
-                        repository.findAllByAssignedDoctor(current)
-                                .stream()
-                                .filter(e -> !e.getExaminedByDoctor().equals(RequestStatus.NOT_CONSIDERED))
-                                .collect(Collectors.toList());
-            case INSTRUCTOR:
-                return repository.findAllByAssignedInstructor(current)
-                        .stream()
-                        .filter(e -> !e.getExaminedByDoctor().equals(RequestStatus.NOT_CONSIDERED))
-                        .collect(Collectors.toList());
-            default:
-                return Collections.emptyList();
-        }
+    public List<Request> findAllPastDoctorsRequests() {
+        return getRequests(e -> !e.getExaminedByInstructor().equals(RequestStatus.NOT_CONSIDERED)
+                , e -> !e.getExaminedByDoctor().equals(RequestStatus.NOT_CONSIDERED));
     }
 
     @Override
-    public List<Request> findAllActiveRequests() {
+    public List<Request> findAllActiveDoctorsRequests() {
+        return getRequests(e -> e.getExaminedByInstructor().equals(RequestStatus.NOT_CONSIDERED)
+                , e -> e.getExaminedByDoctor().equals(RequestStatus.NOT_CONSIDERED));
+    }
+
+    private List<Request> getRequests(Predicate<Request> instructorCase, Predicate<Request> doctorCase) {
         final Staff current = getCurrentStaff();
         switch (current.getRole()) {
             case DOCTOR:
                 return
                         repository.findAllByAssignedDoctor(current)
                                 .stream()
-                                .filter(e -> e.getExaminedByDoctor().equals(RequestStatus.NOT_CONSIDERED))
+                                .filter(doctorCase)
                                 .collect(Collectors.toList());
             case INSTRUCTOR:
                 return repository.findAllByAssignedInstructor(current)
                         .stream()
-                        .filter(e -> e.getExaminedByDoctor().equals(RequestStatus.NOT_CONSIDERED))
+                        .filter(instructorCase)
                         .collect(Collectors.toList());
             default:
                 return Collections.emptyList();

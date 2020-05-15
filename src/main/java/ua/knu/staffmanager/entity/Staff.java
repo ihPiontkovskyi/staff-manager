@@ -1,6 +1,5 @@
 package ua.knu.staffmanager.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,4 +36,8 @@ public class Staff {
     @Column(name = "role", nullable = false)
     private Role role;
 
+    @Override
+    public String toString() {
+        return role + ": " + fullName;
+    }
 }
