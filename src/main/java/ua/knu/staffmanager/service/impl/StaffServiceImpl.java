@@ -8,9 +8,14 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ua.knu.staffmanager.entity.Flight;
+import ua.knu.staffmanager.entity.Role;
 import ua.knu.staffmanager.entity.Staff;
 import ua.knu.staffmanager.repository.StaffRepository;
 import ua.knu.staffmanager.service.StaffService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonList;
 
@@ -39,4 +44,18 @@ public class StaffServiceImpl implements StaffService {
     public boolean supports(Class<?> authentication) {
         return true;
     }
+
+    public List<Staff> findStaffByTerm(String term, Role role) {
+        return staffRepository.findAllByFullNameStartingWith(term)
+                .stream()
+                .filter(e -> e.getRole().equals(role))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Staff findById(Integer id) {
+        return staffRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
 }

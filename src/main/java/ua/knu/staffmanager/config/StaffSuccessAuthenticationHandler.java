@@ -17,13 +17,13 @@ public class StaffSuccessAuthenticationHandler implements AuthenticationSuccessH
         final Role role = Role.valueOf(authentication.getAuthorities().iterator().next().toString());
         switch (role) {
             case DOCTOR:
-                httpServletResponse.sendRedirect("/doctor-home");
+                httpServletResponse.sendRedirect("/doctor");
                 break;
             case INSTRUCTOR:
-                httpServletResponse.sendRedirect("/instructor-home");
+                httpServletResponse.sendRedirect("/instructor");
                 break;
             case ADMINISTRATOR:
-                httpServletResponse.sendRedirect("/admin-home");
+                httpServletResponse.sendRedirect("/admin");
                 break;
             default:
                 httpServletResponse.sendError(403);

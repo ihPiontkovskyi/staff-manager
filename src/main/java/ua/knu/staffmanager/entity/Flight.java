@@ -23,6 +23,9 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "identifier", nullable = false, unique = true)
+    private String identifier;
+
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "from_id")
     private Airport from;
@@ -33,6 +36,7 @@ public class Flight {
 
     @Override
     public String toString() {
-        return id + ": " + from + " - " + to;
+        return identifier + ": " + from + " - " + to;
+
     }
 }

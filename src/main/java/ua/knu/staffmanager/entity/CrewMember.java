@@ -29,10 +29,6 @@ public class CrewMember {
     @Column(name = "role", nullable = false)
     private String role;
 
-    @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "airport_id")
-    private Airport location;
-
     @Override
     public String toString() {
         return role + ": " + fullName;

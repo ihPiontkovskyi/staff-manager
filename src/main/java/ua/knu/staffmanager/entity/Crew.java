@@ -26,6 +26,9 @@ public class Crew {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "identifier", nullable = false, unique = true)
+    private String identifier;
+
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "captain_id", nullable = false)
     private CrewMember captain;
@@ -38,9 +41,13 @@ public class Crew {
     @JoinColumn(name = "crew_members")
     private List<CrewMember> crewMembers;
 
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "airport_id")
+    private Airport location;
+
     @Override
     public String toString() {
-        return "Crew id - " + id + ",Captain - " + captain +
+        return identifier + ",Captain - " + captain +
                 ",Second pilot - " + secondPilot;
     }
 }

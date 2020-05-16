@@ -5,7 +5,13 @@ import ua.knu.staffmanager.entity.Request;
 import java.util.List;
 
 public interface RequestService {
-    List<Request> findAllPastDoctorsRequests();
+    List<Request> findAllPastRequests();
 
-    List<Request> findAllActiveDoctorsRequests();
+    List<Request> findAllActiveRequests();
+
+    void accept(Integer id);
+
+    void deny(Integer id, String cause);
+
+    Request create(Request request);
 }

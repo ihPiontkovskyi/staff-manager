@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
+</head>
+<body>
+<form th:href="@{__${#httpServletRequest.requestURI}__/create}" method="post">
+    <input name="doctor-id" id="doctor-id" hidden/>
+    <input class="input--style-4" id="doctor-autocomplete"/>
+    <input name="instructor-id" id="instructor-id" hidden/>
+    <input id="instructor-autocomplete"/>
+    <input name="flight-id" id="flight-id" hidden/>
+    <input id="flight-autocomplete"/>
+    <input name="crew-id" id="crew-id" hidden/>
+    <input id="crew-autocomplete" hidden/>
+    <button type="submit">Submit</button>
+</form>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#doctor-autocomplete").autocomplete({
+                source: 'doctors-by-term',
+                minLength: 3,
+                select: function (event, ui) {
+                    $("#doctor-autocomplete").val(ui.item.label);
+                    $("#doctor-id").val(ui.item.id);
+                    return false;
+                }
+            });
+        });
+    });
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#instructor-autocomplete").autocomplete({
+                source: 'instructors-by-term',
+                minLength: 3,
+                select: function (event, ui) {
+                    $("#instructor-autocomplete").val(ui.item.label);
+                    $("#instructor-id").val(ui.item.id);
+                    return false;
+                }
+            });
+        });
+    });
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#flight-autocomplete").autocomplete({
+                source: 'flights-by-term',
+                minLength: 1,
+                select: function (event, ui) {
+                    $("#flight-autocomplete").val(ui.item.label);
+                    $("#flight-id").val(ui.item.id);
+                    $("#crew-autocomplete").removeAttr("hidden");
+                    return false;
+                }
+            });
+        });
+    });
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#crew-autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: 'crew-by-term',
+                        data: {
+                            term: request.term,
+                            flightId: $("#flight-id").val()
+                        },
+                        success: function (data) {
+                            response(data);
+                        }
+                    })
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    $("#crew-autocomplete").val(ui.item.label);
+                    $("#crew-id").val(ui.item.id);
+                    return false;
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!--TODO accept or deny request functionality -->
-<!--TODO active request list -->
-<div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div class="popup-form" id="deny-popup" th:fragment="popup">
+    <form class="form-container" id="deny-form" method="post">
+        <label>Cause
+            <input type="text" placeholder="Type rejected cause" th:name="cause">
+        </label>
+        <button type="submit" class="btn">Deny request</button>
+        <button type="submit" class="btn cancel" onclick="closeForm()">Cancel</button>
+    </form>
+</div>
+
+<div th:fragment="active">
     <h3>Active requests</h3>
-    <table>
+    <h4 th:if="${activeRequests.isEmpty()}">No active requests</h4>
+    <table th:if="${!activeRequests.isEmpty()}">
         <thead>
         <tr>
             <th>Id</th>
@@ -19,7 +24,6 @@
             <th>Examined by instructor status</th>
             <th>Crew</th>
             <th>Flight</th>
-            <th>Rejected cause</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -32,19 +36,21 @@
             <td th:text="${req.getExaminedByInstructor()}"></td>
             <td th:text="${req.getCrew()}"></td>
             <td th:text="${req.getFlight()}"></td>
-            <td th:text="${req.getRejectedCause()}"></td>
             <td>
-                <button>Accept</button>
-                <button>Deny</button>
+                <form th:action="@{__${#httpServletRequest.requestURI}__/accept/{id}(id=${req.getId()})}" method="post">
+                    <button>Accept</button>
+                </form>
+                <button th:onclick="'openForm('+${req.getId()}+')'">Deny</button>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
-<!--TODO past request list -->
-<div>
+
+<div th:fragment="past">
     <h3>Past requests</h3>
-    <table>
+    <h2 th:if="${pastRequests.isEmpty()}">There were no requests</h2>
+    <table th:if="${!pastRequests.isEmpty()}">
         <thead>
         <tr>
             <th>Id</th>
@@ -71,5 +77,5 @@
         </tbody>
     </table>
 </div>
-</body>
+
 </html>

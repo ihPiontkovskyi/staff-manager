@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- TODO create request functionality-->
+<div>
+    <div>
+        <h3>Active requests</h3>
+        <h4 th:if="${activeRequests.isEmpty()}">No active requests</h4>
+        <table th:if="${!activeRequests.isEmpty()}">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Assigned doctor</th>
+                <th>Examined by doctor status</th>
+                <th>Assigned instructor</th>
+                <th>Examined by instructor status</th>
+                <th>Crew</th>
+                <th>Flight</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="req:${activeRequests}">
+                <td th:text="${req.getId()}"></td>
+                <td th:text="${req.getAssignedDoctor()}"></td>
+                <td th:text="${req.getExaminedByDoctor()}"></td>
+                <td th:text="${req.getAssignedInstructor()}"></td>
+                <td th:text="${req.getExaminedByInstructor()}"></td>
+                <td th:text="${req.getCrew()}"></td>
+                <td th:text="${req.getFlight()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/general :: past"></div>
+    <a th:href="@{__${#httpServletRequest.requestURI}__/create}">Create new request</a>
+</div>
+</body>
+</html>

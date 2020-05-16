@@ -1,6 +1,7 @@
 package ua.knu.staffmanager.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,9 @@ import javax.persistence.Table;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "requests")
 public class Request {
 
@@ -35,7 +38,7 @@ public class Request {
     @Enumerated(EnumType.STRING)
     private RequestStatus examinedByInstructor;
 
-    @Column(name = "rejected_caues")
+    @Column(name = "rejected_cause")
     private String rejectedCause;
 
     @OneToOne
@@ -46,7 +49,7 @@ public class Request {
     @JoinColumn(name = "instructor_id", nullable = false)
     private Staff assignedInstructor;
 
-    @OneToOne(cascade = CascadeType.DETACH)
+    @OneToOne
     @JoinColumn(name = "crew_id", nullable = false)
     private Crew crew;
 
