@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Data
@@ -24,17 +27,21 @@ public class Crew {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private Integer id;
 
     @Column(name = "identifier", nullable = false, unique = true)
+    @Pattern(regexp = "^[a-zA-Z]{3}[0-9]{6}$")
     private String identifier;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "captain_id", nullable = false)
+    @NotNull
     private CrewMember captain;
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "second_pilot_id", nullable = false)
+    @NotNull
     private CrewMember secondPilot;
 
     @OneToMany(cascade = CascadeType.DETACH)
@@ -42,12 +49,12 @@ public class Crew {
     private List<CrewMember> crewMembers;
 
     @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "airport_id")
+    @JoinColumn(name = "airport_id", nullable = false)
+    @NotNull
     private Airport location;
 
     @Override
     public String toString() {
-        return identifier + ",Captain - " + captain +
-                ",Second pilot - " + secondPilot;
+        return identifier + "[Captain : " + captain +"]";
     }
 }

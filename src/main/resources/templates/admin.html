@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/general :: head"></head>
 <body>
+<aside th:replace="fragments/general :: aside"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="fragments/general :: header"></header>
+    <div class="card-body--">
+        <div class="card-body">
+            <div class="row">
+                <h3>Active requests</h3>
+            </div>
+            <div class="row">
+                <h4 th:if="${activeRequests.isEmpty()}">There is no active</h4>
+            </div>
+            <div class="row">
+                <a th:href="@{__${#httpServletRequest.requestURI}__/create}">Create new request</a>
+            </div>
+        </div>
 
-<!-- TODO create request functionality-->
-<div>
-    <div>
-        <h3>Active requests</h3>
-        <h4 th:if="${activeRequests.isEmpty()}">No active requests</h4>
-        <table th:if="${!activeRequests.isEmpty()}">
+        <table th:if="${!activeRequests.isEmpty()}" class="table">
             <thead>
             <tr>
                 <th>Id</th>
@@ -37,7 +44,7 @@
         </table>
     </div>
     <div th:replace="fragments/general :: past"></div>
-    <a th:href="@{__${#httpServletRequest.requestURI}__/create}">Create new request</a>
+    <div th:replace="fragments/general :: footer"></div>
 </div>
 </body>
 </html>

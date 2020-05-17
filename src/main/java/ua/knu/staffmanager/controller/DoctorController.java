@@ -29,7 +29,7 @@ public class DoctorController {
     @PostMapping(value = "/accept/{id}")
     public RedirectView acceptRequest(@PathVariable Integer id) {
         service.accept(id);
-        return new RedirectView("/doctor-home");
+        return new RedirectView("/doctor");
     }
 
     @PostMapping(value = "/deny/{id}")

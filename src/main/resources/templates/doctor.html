@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="css/popup.css">
-</head>
+
+<head th:replace="fragments/general :: head"></head>
 <body>
-<!--TODO add left and nav bars -->
-<!-- TODO add styles -->
-<div th:replace="fragments/general :: active"></div>
-<div th:replace="fragments/general :: popup"></div>
-<div th:replace="fragments/general :: past"></div>
+<aside th:replace="fragments/general :: aside"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="fragments/general :: header"></header>
+    <div th:replace="fragments/general :: active"></div>
+    <div th:replace="fragments/general :: popup"></div>
+    <div th:replace="fragments/general :: past"></div>
+    <div th:replace="fragments/general :: footer"></div>
+</div>
 <script type="application/javascript" src="js/popup.js"></script>
 </body>
 </html>

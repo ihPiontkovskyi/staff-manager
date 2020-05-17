@@ -22,6 +22,11 @@ public class CrewServiceImpl implements CrewService {
     }
 
     @Override
+    public List<Crew> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Crew findById(Integer id) {
         return repository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);

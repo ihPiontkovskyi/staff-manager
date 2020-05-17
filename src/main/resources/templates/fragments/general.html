@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" +>
 
 <div class="popup-form" id="deny-popup" th:fragment="popup">
     <form class="form-container" id="deny-form" method="post">
@@ -11,10 +11,16 @@
     </form>
 </div>
 
-<div th:fragment="active">
-    <h3>Active requests</h3>
-    <h4 th:if="${activeRequests.isEmpty()}">No active requests</h4>
-    <table th:if="${!activeRequests.isEmpty()}">
+<div th:fragment="active" class="card-body--">
+    <div class="card-body">
+        <div class="row">
+            <h3>Active requests</h3>
+        </div>
+        <div class="row">
+            <h4 th:if="${activeRequests.isEmpty()}">There is no active</h4>
+        </div>
+    </div>
+    <table th:if="${!activeRequests.isEmpty()}" class="table">
         <thead>
         <tr>
             <th>Id</th>
@@ -37,7 +43,8 @@
             <td th:text="${req.getCrew()}"></td>
             <td th:text="${req.getFlight()}"></td>
             <td>
-                <form th:action="@{__${#httpServletRequest.requestURI}__/accept/{id}(id=${req.getId()})}" method="post">
+                <form th:action="@{__${#httpServletRequest.requestURI}__/accept/{id}(id=${req.getId()})}"
+                      method="post">
                     <button>Accept</button>
                 </form>
                 <button th:onclick="'openForm('+${req.getId()}+')'">Deny</button>
@@ -47,10 +54,18 @@
     </table>
 </div>
 
-<div th:fragment="past">
-    <h3>Past requests</h3>
-    <h2 th:if="${pastRequests.isEmpty()}">There were no requests</h2>
-    <table th:if="${!pastRequests.isEmpty()}">
+<div th:fragment="past" class="card-body--">
+
+    <div class="card-body">
+        <div class="row">
+            <h3>Past requests</h3>
+        </div>
+        <div class="row">
+            <h4 th:if="${pastRequests.isEmpty()}">There were no requests</h4>
+        </div>
+    </div>
+
+    <table th:if="${!pastRequests.isEmpty()}" class="table">
         <thead>
         <tr>
             <th>Id</th>
@@ -77,5 +92,66 @@
         </tbody>
     </table>
 </div>
+
+<aside id="left-panel" class="left-panel" th:fragment="aside">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a th:href="@{/home}">
+                        <em class="menu-icon fa fa-bar-chart"></em>
+                        <span th:text="Home"></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/flights}"> <em class="menu-icon fa fa-plane"></em>
+                        <span th:text="Flights"></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/crews}"> <em class="menu-icon fa fa-users"></em>
+                        <span th:text="Crews"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Staff manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" th:href="@{/images/logo-002.png}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/59810e450d.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+</head>
+
+<header id="header" class="header" th:fragment="header">
+    <div class="top-right">
+        <a class="nav-link" th:href="@{/logout}">
+            <em class="menu-icon fa fa-sign-out"></em>
+        </a>
+    </div>
+
+</header>
+
+<footer class="site-footer" th:fragment="footer">
+    <div class="footer-inner bg-white">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                Made by <a href="https://github.com/ihPiontkovskyi/">Ihor Piontkovskyi</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </html>

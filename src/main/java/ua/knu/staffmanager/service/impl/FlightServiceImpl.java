@@ -20,6 +20,11 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
+    public List<Flight> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Flight findById(Integer id) {
         return repository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
