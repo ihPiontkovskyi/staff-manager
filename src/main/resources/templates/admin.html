@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/general :: head"></head>
+<body>
+<aside th:replace="fragments/general :: aside"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="fragments/general :: header"></header>
+    <div class="card-body--">
+        <div class="card-body">
+            <div class="row">
+                <h3>Active requests</h3>
+            </div>
+            <div class="row">
+                <h4 th:if="${activeRequests.isEmpty()}">There is no active</h4>
+            </div>
+            <div class="row">
+                <a th:href="@{__${#httpServletRequest.requestURI}__/create}">Create new request</a>
+            </div>
+        </div>
+
+        <table th:if="${!activeRequests.isEmpty()}" class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Assigned doctor</th>
+                <th>Examined by doctor status</th>
+                <th>Assigned instructor</th>
+                <th>Examined by instructor status</th>
+                <th>Crew</th>
+                <th>Flight</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="req:${activeRequests}">
+                <td th:text="${req.getId()}"></td>
+                <td th:text="${req.getAssignedDoctor()}"></td>
+                <td th:text="${req.getExaminedByDoctor()}"></td>
+                <td th:text="${req.getAssignedInstructor()}"></td>
+                <td th:text="${req.getExaminedByInstructor()}"></td>
+                <td th:text="${req.getCrew()}"></td>
+                <td th:text="${req.getFlight()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/general :: past"></div>
+    <div th:replace="fragments/general :: footer"></div>
+</div>
+</body>
+</html>

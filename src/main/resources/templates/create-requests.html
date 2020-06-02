@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/general :: head"></head>
+<body>
+<form th:href="@{__${#httpServletRequest.requestURI}__/create}" method="post">
+    <input name="doctor-id" id="doctor-id" hidden/>
+    <input class="input--style-4" id="doctor-autocomplete"/>
+    <input name="instructor-id" id="instructor-id" hidden/>
+    <input id="instructor-autocomplete"/>
+    <input name="flight-id" id="flight-id" hidden/>
+    <input id="flight-autocomplete"/>
+    <input name="crew-id" id="crew-id" hidden/>
+    <input id="crew-autocomplete" hidden/>
+    <button type="submit">Submit</button>
+</form>
+<script type="application/javascript" src="js/autocomplete.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/general :: head"></head>
+<body>
+<aside th:replace="fragments/general :: aside"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="fragments/general :: header"></header>
+    <div class="table-stats order-table ov-h">
+        <div class="card-body">
+            <div class="row">
+                <h3>Flights</h3>
+                <h4 th:if="${flights.isEmpty()}">No available flights</h4>
+            </div>
+        </div>
+        <table th:if="${!flights.isEmpty()}" class="table">
+            <thead>
+            <tr>
+                <th>Identifier</th>
+                <th>Ca</th>
+                <th>To</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="flight:${flights}">
+                <td th:text="${flight.getIdentifier()}"></td>
+                <td th:text="${flight.getFrom()}"></td>
+                <td th:text="${flight.getTo()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/general :: footer"></div>
+</div>
+</body>
+</html>

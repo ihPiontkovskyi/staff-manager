@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/general :: head"></head>
+<body>
+<aside th:replace="fragments/general :: aside"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="fragments/general :: header"></header>
+    <div class="card-body">
+        <div class="row">
+            <h3>Crews</h3>
+            <h4 th:if="${crews.isEmpty()}">No available crews</h4>
+        </div>
+    </div>
+    <table th:if="${!crews.isEmpty()}" class="table">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Captain</th>
+            <th>Second pilot</th>
+            <th>Location</th>
+            <th>Crew members</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="crew:${crews}">
+            <td th:text="${crew.getIdentifier()}"></td>
+            <td th:text="${crew.getCaptain()}"></td>
+            <td th:text="${crew.getSecondPilot()}"></td>
+            <td th:text="${crew.getLocation()}"></td>
+            <td th:text="${crew.getCrewMembers()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="fragments/general :: footer"></div>
+</div>
+</body>
+</html>
