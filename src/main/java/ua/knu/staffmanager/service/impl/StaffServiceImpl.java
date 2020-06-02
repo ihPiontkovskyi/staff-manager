@@ -35,7 +35,8 @@ public class StaffServiceImpl implements StaffService {
                 orElseThrow(() -> new IllegalArgumentException("user.does.not.exists"));
 
         if (encoder.matches(password, staffMember.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(staffMember.getIdentifier(), staffMember.getPassword(), singletonList(new SimpleGrantedAuthority(staffMember.getRole().name())));
+            return new UsernamePasswordAuthenticationToken(staffMember.getIdentifier(), staffMember.getPassword(),
+                    singletonList(new SimpleGrantedAuthority(staffMember.getRole().name())));
         }
         throw new IllegalArgumentException("incorrect.identifier.or.password");
     }
@@ -57,5 +58,4 @@ public class StaffServiceImpl implements StaffService {
         return staffRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
     }
-
 }

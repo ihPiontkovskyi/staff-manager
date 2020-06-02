@@ -100,6 +100,4 @@ public class AdminController {
                 .map(e -> new TransferObject(e.getId(), e.toString()))
                 .collect(Collectors.toList());
     }
-
-
 }

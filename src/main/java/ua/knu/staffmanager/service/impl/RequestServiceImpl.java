@@ -64,7 +64,8 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void deny(Integer id, String cause) {
         final Staff current = getCurrentStaff();
-        Request request = repository.findById(id).orElseThrow(NoSuchElementException::new);
+        Request request = repository.findById(id)
+                .orElseThrow(NoSuchElementException::new);
         switch (current.getRole()) {
             case INSTRUCTOR:
                 request.setExaminedByInstructor(RequestStatus.DENIED);

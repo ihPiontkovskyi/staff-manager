@@ -37,6 +37,4 @@ public class DoctorController {
         service.deny(id, cause);
         return "redirect:/doctor";
     }
-
-
 }
